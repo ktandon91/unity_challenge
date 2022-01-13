@@ -1,8 +1,21 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 
-app = FastAPI()
+from api.config import Config
+from api.repository import db
+from api.routes import games
 
-@app.get("/")
-async def read_root():
-    return {"message": "Welcome!"}
+app = FastAPI(title="Async FastAPI")
+
+app.include_router(games.router, prefix='/api/games')
+
+
+@app.on_event("startup")
+async def startup():
+    config = Config()
+    await db.connect(path=config.db_path)
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await db.close()
 
