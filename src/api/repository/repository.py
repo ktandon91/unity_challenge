@@ -1,8 +1,9 @@
 from abc import abstractmethod
 from typing import List
 
-from api.models import Game, OID
-
+from api.schemas.base import OID
+from api.schemas.game import GameIn, GameOut
+# from api.models import GameIn, GameOut, OID
 
 class Repository(object):
     @property
@@ -22,19 +23,19 @@ class Repository(object):
         pass
 
     @abstractmethod
-    async def get_games(self) -> List[Game]:
+    async def get_games(self) -> List[GameOut]:
         pass
 
     @abstractmethod
-    async def get_game(self, game_id: OID) -> Game:
+    async def get_game(self, game_id: OID) -> GameOut:
         pass
 
     @abstractmethod
-    async def add_game(self, game: Game):
+    async def add_game(self, game: GameIn):
         pass
 
     @abstractmethod
-    async def update_game(self, game_id: OID, game: Game):
+    async def update_game(self, game_id: OID, game: GameIn):
         pass
 
     @abstractmethod
