@@ -1,10 +1,9 @@
 from fastapi import FastAPI
-
+import uvicorn
 from api.config import Config
-from api.repository import db
 from api.routes import games
-
-app = FastAPI(title="Async FastAPI")
+from api.repository import db
+app = FastAPI(title="Unity Challenge")
 
 app.include_router(games.router, prefix='/api/games')
 
@@ -19,3 +18,5 @@ async def startup():
 async def shutdown():
     await db.close()
 
+if __name__ == "__main__":
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
