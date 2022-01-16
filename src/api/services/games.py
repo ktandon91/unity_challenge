@@ -42,6 +42,7 @@ async def update_game(game_id: OID, game: GameIn):
     await db.games.update_one({'_id': ObjectId(game_id)},
                                        {'$set': game.dict(exclude={'id'})})
 
+
 async def delete_game(game_id: OID):
     db = db_service.db
     await db.games.delete_one({'_id': ObjectId(game_id)})

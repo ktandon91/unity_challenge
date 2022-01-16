@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import APIRouter, Depends, status, Request, HTTPException
+from fastapi import APIRouter, Depends, status, Request, Response, HTTPException
 
 from api import oauth2
 from api.schemas.base import OID
@@ -42,11 +42,8 @@ async def game_details(game_id: OID):
 
 @router.put('/{game_id}')
 async def update_game(game_id: OID, game: GameIn):
-    game = await games_service.update_game(game_id=game_id, game=game)
-    if not game:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                    details="Game not found")
-    return game
+    await games_service.update_game(game_id=game_id, game=game)
+    return Response("Successfully Updated!")
 
 
 @router.delete('/{game_id}', status_code=status.HTTP_204_NO_CONTENT)
