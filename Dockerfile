@@ -7,6 +7,7 @@ RUN pip install --upgrade -r requirements.txt
 
 EXPOSE 8080
 
-COPY ./src /app
+COPY . /app
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]

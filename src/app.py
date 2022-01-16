@@ -1,12 +1,14 @@
+import os
 import uvicorn
 
 from fastapi import FastAPI, Depends
 from fastapi.responses import RedirectResponse
 
-from api.config import Config
+from api.config import settings
 from api.routes import auth, games, users
 from api.repository import Repository, get_database, repo
 from api.services import load_data as load_data_service
+
 
 app = FastAPI(title="Unity Challenge")
 
@@ -28,8 +30,8 @@ async def load_sample_data(db: Repository = Depends(get_database)):
 
 @app.on_event("startup")
 async def startup():
-    config = Config()
-    await repo.connect(path=config.db_path)
+    db_path = os.getenv("DB_PATH", settings.db_path)
+    await repo.connect(path=db_path)
 
 
 @app.on_event("shutdown")

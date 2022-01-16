@@ -22,6 +22,29 @@
 
 ## About The Project
 Sample API for unity interview process.
+
+1. Project Structure
+   ```
+    ├───screenshots
+    ├───src
+    │   ├───api
+    │   │   ├───fixtures
+    │   │   ├───repository
+    │   │   ├───routes   
+    │   │   ├───schemas   
+    │   │   ├───services   
+    │   │   ├───oauth2.py
+    │   │   ├───utils.py
+    │   │   ├───config.py
+    │   └───app.py
+    ├───unityapp
+    ├───docker-compose.yml
+    ├───Dockerfile
+    ├───README.md
+    ├───requirements.txt
+    ├───.env
+   ```
+
 ### Important Points On Task
 
 1. For the below objective. </br>
