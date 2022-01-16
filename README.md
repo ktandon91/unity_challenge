@@ -46,7 +46,9 @@ For instructions on how to run the project navigate to <a href="#getting-started
 
 <li>
 For the below objective. </br>
-`Build a premium game listing feature that allows users from the Unity app to unlock premium game tiles.` </br>
+
+`Build a premium game listing feature that allows users from the Unity app to unlock premium game tiles.` 
+</br>
 
 I have implemented a basic authentication mechanism, where authentication would mean that a user has a premium subscription and can view premium listings. </br>
 To segregate premium listings from normal ones I have added a new flag in json response `isPremium` which when set would mean that a listing is premium and only authenticated users can see these. </br> </br>
@@ -55,19 +57,24 @@ To segregate premium listings from normal ones I have added a new flag in json r
  #### To Test Premium listings restriction follow the below steps.
 <li>
     Create a user using ceate user API.
-    ![](images/create_user.png|width=100)
+    <img src="images/create_user.png" alt="Logo" width="200" height="100">
 </li>
 <li>
     Add two listing one by `isPremium` flag and another with default `isPremium` value.
+    <img src="images/premium_listing.png" alt="Logo" width="200" height="100">
+    <img src="images/non_premium_listing.png" alt="Logo" width="200" height="100">
 </li>
 <li>
-    Make the get request to listings api `/games` and see the response it will not show listing with `isPremium` true
+    Make the get request to listings api `/games` and see the response it will not show listing with `isPremium` true.
+    <img src="images/non_subscribers_listings.png" alt="Logo" width="200" height="100">
 </li>
 <li>
     Authorize using email id and pass of the user we created on above step.
+    <img src="images/authorization_step.png" alt="Logo" width="200" height="100">
 </li>
 <li>
     Again make the get request to listings api `/games` and see the response. Now we will be able to see 2 listings. One with `isPremium` set to true and another with `isPremium` set to false.
+    <img src="images/subscribers_listing.png" alt="Logo" width="200" height="100">
 </li>
 </ul>
 </br>
