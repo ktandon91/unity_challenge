@@ -30,7 +30,7 @@ async def load_sample_data(db: Repository = Depends(get_database)):
 
 @app.on_event("startup")
 async def startup():
-    db_url = os.getenv("DB_URL", settings.db_path)
+    db_url = os.getenv("DB_URL", settings.db_url)
     await repo.connect(url=db_url)
 
 
