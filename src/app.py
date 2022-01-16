@@ -1,7 +1,7 @@
 import os
 import uvicorn
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 from fastapi.responses import RedirectResponse
 
 from api.config import settings
@@ -30,8 +30,8 @@ async def load_sample_data(db: Repository = Depends(get_database)):
 
 @app.on_event("startup")
 async def startup():
-    db_path = os.getenv("DB_PATH", settings.db_path)
-    await repo.connect(path=db_path)
+    db_url = os.getenv("DB_URL", settings.db_path)
+    await repo.connect(url=db_url)
 
 
 @app.on_event("shutdown")

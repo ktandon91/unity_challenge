@@ -15,7 +15,7 @@ async def get_user(email: EmailStr, db: Repository = Depends(get_database)):
     user = await users_service.get_user(email, db)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                    details="User not found")
+                    detail="User not found")
     return user
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserOut)

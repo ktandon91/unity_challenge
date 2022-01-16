@@ -7,9 +7,9 @@ from api.schemas.base import OID
 from api.schemas.game import GameIn, GameOut, GamesListing
 from api.schemas.image import ImageOut
 
-async def all_games(db:Repository, is_premium_user:bool = False) -> List[GameOut]:
+async def all_games(db:Repository, is_subscriber:bool = False) -> List[GameOut]:
     games_list = []
-    if is_premium_user:
+    if is_subscriber:
         games_q = db.games.find()
     else:
         games_q = db.games.find({"isPremium": { "$ne": True}})

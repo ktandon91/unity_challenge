@@ -7,6 +7,15 @@
         <li><a href="#important-points-on-task">Important Points On Task</a></li>
       </ul>
       <ul>
+        <li><a href="#project-structure">Project Structure</a></li>
+      </ul>
+      <ul>
+        <li><a href="#architecture-and-design">Architecture and Design</a></li>
+      </ul>
+      <ul>
+        <li><a href="#request-flow">Request Flow</a></li>
+      </ul>
+      <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -21,9 +30,34 @@
 </ol>
 
 ## About The Project
+<ul>
 Sample API for unity interview process.
 
-1. Project Structure
+Tried implementing a self documenting code approach where all variables and function names are denoting what they are actually doing. 
+
+API documentation can be accessed on `/docs` endpoint, when the project is up and running. 
+
+For instructions on how to run the project navigate to <a href="#getting-started">Getting Started</a>
+
+<li>
+
+### Important Points On Task
+
+1. For the below objective. </br>
+`Build a premium game listing feature that allows users from the Unity app to unlock premium game tiles.` </br>
+I have implemented a basic authentication mechanism, where authentication would mean that a user has a premium subscription and can view premium listings. </br>
+To segregate premium listings from normal ones I have added a new flag in json response `isPremium` which when set would mean that a listing is premium and only authenticated users can see these.
+
+2. This is the reference to the commit for using the response of web api in unity app. [Unity App Web API Integration](https://github.com/ktandon91/unity_challenge/commit/265ec14ced41b1b7141d064a4ee14484f777ad9c)
+
+3. Swagger Documention of the project can be found on root url or on `http://localhost:8000/docs` </br>
+    >Note: Make sure project is up and running to view swagger documentation**
+</li>
+
+<li>
+
+### Project Structure
+   
    ```
     ├───screenshots
     ├───src
@@ -44,19 +78,25 @@ Sample API for unity interview process.
     ├───requirements.txt
     ├───.env
    ```
+</li>
 
-### Important Points On Task
+<li>
 
-1. For the below objective. </br>
-`Build a premium game listing feature that allows users from the Unity app to unlock premium game tiles.` </br>
-I have implemented a basic authentication mechanism, where authentication would mean that a user has a premium subscription and can view premium listings. </br>
-To segregate premium listings from normal ones I have added a new flag in json response `isPremium` which when set would mean that a listing is premium and only authenticated users can see these.
+### Architecture and Design
 
-2. This is the reference to the commit for using the response of web api in unity app. [Unity App Web API Integration](https://github.com/ktandon91/unity_challenge/commit/265ec14ced41b1b7141d064a4ee14484f777ad9c)
+Follows layered architecture approach and repository design pattern.  
 
-3. Swagger Documention of the project can be found on root url or on `http://localhost:8000/docs` </br>
-    >Note: Make sure project is up and running to view swagger documentation**
- 
+</li>
+<li>
+
+### Request Flow
+  >* *app.py is the entry point of the application*
+  >* *Request will first go to app.py*
+  >* *From app.py, request will be forwarded to appropriate route handlers in routes directory*
+  >* *Route handlers will validate the structure of the request, and use the appropriate service from services directory*
+  >* *Services will interact will the database and return the response to the route handlers*
+</li>
+</ul> 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

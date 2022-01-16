@@ -102,8 +102,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.venv
 env/
 venv/
 ENV/
@@ -133,3 +131,6 @@ dmypy.json
 
 ## Unity Library
 unityapp/Library
+
+# Notes
+notes.txt

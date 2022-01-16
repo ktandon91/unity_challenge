@@ -1,18 +1,21 @@
-from fastapi import APIRouter, Depends, status, Request, Response, HTTPException
+from typing import Optional
 
+from fastapi import APIRouter, Depends, status, Response, HTTPException
+
+from api import oauth2
 from api.repository import Repository, get_database
 from api.schemas.base import OID
 from api.schemas.game import GameIn, GameOut, GamesListing
 from api.services import games as games_service
-from api.utils import check_authorization_header
+
 
 router = APIRouter(tags=['Games'])
 
 
 @router.get('/', response_model=GamesListing)
-async def get_game_listings(is_premium_user: bool = Depends(check_authorization_header), 
+async def get_game_listings(is_subscriber: Optional[bool] = Depends(oauth2.is_subscriber), 
                 db: Repository = Depends(get_database)):
-    games_listing = await games_service.all_games(db, is_premium_user)
+    games_listing = await games_service.all_games(db, is_subscriber)
     return games_listing
 
 
@@ -27,7 +30,7 @@ async def game_details(game_id: OID, db: Repository = Depends(get_database)):
     game = await games_service.get_game(db, game_id)
     if not game:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                    details="Game not found")
+                    detail="Game not found")
     return game
 
 

@@ -9,10 +9,10 @@ class MongoRepository(Repository):
     client: AsyncIOMotorClient = None
     db: AsyncIOMotorDatabase = None
 
-    async def connect(self, path: str):
+    async def connect(self, url: str):
         logging.info("Connecting to MongoDB.")
         self.client = AsyncIOMotorClient(
-            path,
+            url,
             maxPoolSize=10,
             minPoolSize=10)
         self.db = self.client.unity_db
