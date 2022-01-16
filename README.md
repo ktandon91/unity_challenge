@@ -24,14 +24,16 @@
 Sample API for unity interview process.
 ### Important Points On Task
 
-1. For the below object </br>
+1. For the below objective. </br>
 `Build a premium game listing feature that allows users from the Unity app to unlock premium game tiles.` </br>
 I have implemented a basic authentication mechanism, where authentication would mean that a user has a premium subscription and can view premium listings. </br>
 To segregate premium listings from normal ones I have added a new flag in json response `isPremium` which when set would mean that a listing is premium and only authenticated users can see these.
 
 2. This is the reference to the commit for using the response of web api in unity app. [Unity App Web API Integration](https://github.com/ktandon91/unity_challenge/commit/265ec14ced41b1b7141d064a4ee14484f777ad9c)
 
-3. Swagger Documention can be found on root url or on `http://localhost:8000/docs`
+3. Swagger Documention of the project can be found on root url or on `http://localhost:8000/docs` </br>
+:imp: make sure project is up and running to view swagger documentation
+ 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
