@@ -1,5 +1,5 @@
 <!-- TABLE OF CONTENTS -->
-<summary>Table of Contents</summary>
+## <summary>Table of Contents</summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -71,6 +71,11 @@ Make sure you have Docker installed on your system.
    ```
    http://localhost:8000/
    ```
+
+4. To load sample data `UITest.json`, make a simple get request to `/load`.  
+    ```
+    http://localhost:8000/load
+    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
