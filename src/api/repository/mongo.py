@@ -15,7 +15,7 @@ class MongoRepository(Repository):
             path,
             maxPoolSize=10,
             minPoolSize=10)
-        self.db = self.client.main_db
+        self.db = self.client.unity_db
         await self.add_constraints()
         logging.info("Connected to MongoDB.")
 
