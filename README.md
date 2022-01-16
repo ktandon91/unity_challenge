@@ -63,25 +63,25 @@ To segregate premium listings from normal ones I have added a new flag in json r
 <li>
     Add two listing one by `isPremium` flag and another with default `isPremium` value.
     </br>
-    <img src="images/premium_listing.png" alt="Logo" width="200" height="100">
+    <img src="images/premium_listing.PNG" alt="Logo" width="200" height="100">
     </br>
-    <img src="images/non_premium_listing.png" alt="Logo" width="200" height="100">
+    <img src="images/non_premium_listing.PNG" alt="Logo" width="200" height="100">
 </li>
 <li>
     Make the get request to listings api `/games` and see the response it will not show listing with `isPremium` true.
     </br>
-    <img src="images/non_subscribers_listings.png" alt="Logo" width="200" height="100">
+    <img src="images/non_subscribers_listings.PNG" alt="Logo" width="200" height="100">
     </br>
 </li>
 <li>
     Authorize using email id and pass of the user we created on above step.</br>
-    <img src="images/authorization_step.png" alt="Logo" width="200" height="100">
+    <img src="images/authorization_step.PNG" alt="Logo" width="200" height="100">
     </br>
 </li>
 <li>
     Again make the get request to listings api `/games` and see the response. Now we will be able to see 2 listings. One with `isPremium` set to true and another with `isPremium` set to false.
     </br>
-    <img src="images/subscribers_listing.png" alt="Logo" width="200" height="100">
+    <img src="images/subscribers_listing.PNG" alt="Logo" width="200" height="100">
 </li>
 </ul>
 </br>
