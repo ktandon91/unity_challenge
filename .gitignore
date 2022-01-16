@@ -130,3 +130,6 @@ dmypy.json
 .idea/
 
 .vercel
+
+## Unity Library
+unityapp/Library

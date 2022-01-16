@@ -32,7 +32,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
 2. This is the reference to the commit for using the response of web api in unity app. [Unity App Web API Integration](https://github.com/ktandon91/unity_challenge/commit/265ec14ced41b1b7141d064a4ee14484f777ad9c)
 
 3. Swagger Documention of the project can be found on root url or on `http://localhost:8000/docs` </br>
- **Note: Make sure project is up and running to view swagger documentation**
+    >Note: Make sure project is up and running to view swagger documentation**
  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -89,19 +89,47 @@ All the APIs can be tested from swagger on below url.
     ```
     http://localhost:8000/api/games
     ```
+    Resonse JSON 
+    ```
+
+    ```
 2. To add a game listing, make a post request on
     ```
     http://localhost:8000/api/games
     ```
+    Request JSON 
+    ```
+
+    ```
+    Resonse JSON 
+    ```
+
+    ```
 3. To view a single game listing, make a get request using game_id on.
     ```
     http://localhost:8000/api/games/{game_id}
+    ```
+    Resonse JSON 
+    ```
+
     ```    
 4. To update a game listing, make a put request using game_id on.
     ```
     http://localhost:8000/api/games/{game_id}
+    ```
+    Request JSON 
+    ```
+
+    ```
+    Resonse JSON 
+    ```
+
     ```    
 5. To delete a game listing, make a delete using game_id request on.
     ```
     http://localhost:8000/api/games/{game_id}
+    ```
+    Resonse 
+    ```
+
     ```
