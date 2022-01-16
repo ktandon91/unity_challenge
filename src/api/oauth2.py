@@ -6,7 +6,7 @@ from fastapi import Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 
 from api.config import Config
-from api.repository import db
+from api.repository import repo
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
@@ -48,7 +48,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
     token = verify_access_token(token, credentials_exception)
 
-    user = await db.db.users.find_one({"email" : token.email})
+    user = await repo.db.users.find_one({"email" : token.email})
 
     if not user:
         raise credentials_exception

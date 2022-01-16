@@ -1,22 +1,12 @@
-from api.schemas.base import OID
+from api.schemas.base import BaseDBModel
 
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import EmailStr
 
 
-class UserIn(BaseModel):
+class UserIn(BaseDBModel):
     email: EmailStr
     password: str
 
-    class Config:
-        orm_mode = True
-
-class UserOut(BaseModel):
-    id: OID = Field(default_factory=OID)
+class UserOut(BaseDBModel):
     email: EmailStr
 
-    @validator("id")
-    def validate_id(cls, v):
-        """validator to sanitize id"""
-        if not isinstance(v, str):
-            return str(v)
-        return v
