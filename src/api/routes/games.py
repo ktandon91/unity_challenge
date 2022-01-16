@@ -1,19 +1,28 @@
 from typing import List
-from fastapi import APIRouter, Response, status, HTTPException
+from fastapi import APIRouter, Depends, status, Request, HTTPException
 
+from api import oauth2
 from api.schemas.base import OID
-from api.schemas.game import GameIn, GameOut
+from api.schemas.game import GameIn, GameOut, GamesListing
 
-import api.services.games as games_service
-# from api.services.games import all_games, get_game, insert_game
+from api.services import games as games_service
 
-router = APIRouter()
+router = APIRouter(tags=['Games'])
 
+async def check_authorization_header(req: Request) -> bool:
+    credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                          detail=f"Could not validate credentials", headers={"WWW-Authenticate": "Bearer"})
+    if "authorization" in req.headers:
+        token = req.headers['authorization'].replace("Bearer", "").strip()
+        user = oauth2.verify_access_token(token, credentials_exception)
+        if user:
+            return True
+    return False    
 
-@router.get('/', response_model=List[GameOut])
-async def get_games():
-    games = await games_service.all_games()
-    return games
+@router.get('/', response_model=GamesListing)
+async def get_games(is_premium_user = Depends(check_authorization_header)):
+    games_listing = await games_service.all_games(is_premium_user)
+    return games_listing
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
@@ -43,4 +52,3 @@ async def update_game(game_id: OID, game: GameIn):
 @router.delete('/{game_id}', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_game(game_id: OID):
     await games_service.delete_game(game_id=game_id)
-    return Response(status_code=status.HTTP_204_NO_CONTENT)

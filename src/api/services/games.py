@@ -4,16 +4,21 @@ from bson import ObjectId
 
 from api.repository import db as db_service
 from api.schemas.base import OID 
-from api.schemas.game import GameIn, GameOut
+from api.schemas.game import GameIn, GameOut, GamesListing
 from api.schemas.image import ImageOut
 
-async def all_games() -> List[GameOut]:
+async def all_games(is_premium_user=False) -> List[GameOut]:
     db = db_service.db
     games_list = []
-    games_q = db.games.find()
+    
+    if is_premium_user:
+        games_q = db.games.find()
+    else:
+        games_q = db.games.find({"isPremium": { "$ne": True}})
     async for game in games_q:
         games_list.append(GameOut(**game, id=game['_id']))
-    return games_list
+    games_listing = GamesListing(listings=games_list)
+    return games_listing
 
 
 async def get_game(game_id: OID) -> GameOut:

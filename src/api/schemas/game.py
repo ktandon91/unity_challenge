@@ -18,6 +18,7 @@ class Game(BaseDBModel):
     replayBundleUrlJson: Optional[str]
     isDownloadable: Optional[bool] = False
     isStreamable: Optional[bool] = False
+    isPremium: Optional[bool] = False
     version: float
 
 class GameIn(Game):
@@ -42,3 +43,6 @@ class GameOut(Game):
         if not isinstance(v, str):
             return str(v)
         return v
+
+class GamesListing(BaseDBModel):
+    listings: List[GameOut]
