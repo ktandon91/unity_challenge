@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Replay;
+using UnityEngine.Networking;
 
 namespace Unity.Metacast.Demo
 {
@@ -15,11 +17,24 @@ namespace Unity.Metacast.Demo
         ///     Start is called on the frame when a script is enabled just
         ///     before any of the Update methods are called the first time.
         /// </summary>
-        private void Start()
+        private async void Start()
         {
-
             //TODO Instead of a TextAsset pass JSON result from the web server.
-            UIBrowser.instance.Init(m_TestJson.text);
+            var url = "http://localhost:8000/api/games/";
+            using var www = UnityWebRequest.Get(url);
+            www.SetRequestHeader("Content-Type", "application/json");
+            var operation = www.SendWebRequest();
+
+            while(!operation.isDone)
+                await Task.Yield();
+            
+            
+            if (www.result == UnityWebRequest.Result.Success){
+                Debug.Log($"Success :{www.downloadHandler.text}");
+                UIBrowser.instance.Init(www.downloadHandler.text);
+            }
+            else
+                Debug.Log($"Failed :{www.error}");
         }
     }
 }
