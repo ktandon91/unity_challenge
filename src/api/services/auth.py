@@ -3,9 +3,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from api import utils, oauth2
 from api.repository import Repository
+from api.schemas.token import Token
 
 
-async def login(user_credentials: OAuth2PasswordRequestForm, db: Repository):
+async def login(user_credentials: OAuth2PasswordRequestForm, db: Repository) -> Token:
     user = await db.users.find_one({"email": user_credentials.username})
     if not user:
         raise HTTPException(

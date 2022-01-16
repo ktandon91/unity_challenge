@@ -8,7 +8,7 @@ from api.repository import Repository
 from api.schemas.game import GameIn
 from api.schemas.image import ImageOut
 
-async def load_json_data(db: Repository):
+async def load_json_data(db: Repository) -> None:
     curr_dir = os.path.dirname(__file__)
     fixtures_dir = os.path.join(curr_dir, "..", "fixtures")
     sample_json_data_file = os.path.join(fixtures_dir, "UITest.json")

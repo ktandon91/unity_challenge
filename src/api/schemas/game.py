@@ -1,5 +1,7 @@
-from pydantic import validator, Field
+
 from typing import Optional, List
+
+from pydantic import validator, Field
 
 from api.schemas.base import BaseDBModel, OID
 from api.schemas.image import Image, ImageOut
@@ -31,12 +33,13 @@ class GameIn(Game):
 class GameOut(Game):
     """
         Output Game Response Schema
-        Game object will be return with auto generated MongoId.
+        Game object will be return with auto generated Mongo ObjectId.
         Image array will also be return with unique ids.
     """
     id: OID = Field(default_factory=OID)
     images: Optional[List[ImageOut]]
 
+    # Validator to validate oid is converted to str
     @validator("id")
     def validate_id(cls, v):
         """validator to sanitize id"""
@@ -44,5 +47,7 @@ class GameOut(Game):
             return str(v)
         return v
 
+
+# Games Listing Model
 class GamesListing(BaseDBModel):
     listings: List[GameOut]

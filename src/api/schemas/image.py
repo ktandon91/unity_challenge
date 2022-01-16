@@ -17,6 +17,7 @@ class ImageOut(Image):
     """
     id: Optional[OID]
 
+    # Validator to validate str oid is returned
     @validator("id")
     def validate_id(cls, v):
         """validator to sanitize id"""

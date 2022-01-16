@@ -1,7 +1,7 @@
 import os
 import uvicorn
 
-from fastapi import FastAPI, Depends, Request
+from fastapi import FastAPI, Depends
 from fastapi.responses import RedirectResponse
 
 from api.config import settings

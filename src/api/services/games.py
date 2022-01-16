@@ -25,7 +25,7 @@ async def get_game(db:Repository, game_id: OID) -> GameOut:
         return GameOut(**game_q, id=game_q['_id'])
 
 
-async def insert_game(db:Repository, game: GameIn):
+async def insert_game(db:Repository, game: GameIn) -> None:
     images = []
     for img in game.images:
         images.append(ImageOut(**img.dict(), id=ObjectId()))
@@ -33,7 +33,7 @@ async def insert_game(db:Repository, game: GameIn):
     await db.games.insert_one(game.dict(exclude={'id'}))
 
 
-async def update_game(db:Repository, game_id: OID, game: GameIn):
+async def update_game(db:Repository, game_id: OID, game: GameIn) -> None:
     images = []
     for img in game.images:
         images.append(ImageOut(**img.dict(), id=ObjectId()))
@@ -42,5 +42,5 @@ async def update_game(db:Repository, game_id: OID, game: GameIn):
                                        {'$set': game.dict(exclude={'id'})})
 
 
-async def delete_game(db:Repository, game_id: OID):
+async def delete_game(db:Repository, game_id: OID) -> None:
     await db.games.delete_one({'_id': ObjectId(game_id)})

@@ -2,6 +2,9 @@ from typing import Optional
 from pydantic import BaseModel
 
 class Token(BaseModel):
+    """
+        JWT token schema
+    """
     access_token: str
     token_type: str
 

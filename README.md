@@ -51,7 +51,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
 2. This is the reference to the commit for using the response of web api in unity app. [Unity App Web API Integration](https://github.com/ktandon91/unity_challenge/commit/265ec14ced41b1b7141d064a4ee14484f777ad9c)
 
 3. Swagger Documention of the project can be found on root url or on `http://localhost:8000/docs` </br>
-    >Note: Make sure project is up and running to view swagger documentation**
+    >Note: Make sure project is up and running to view swagger documentation.
 </li>
 
 <li>
