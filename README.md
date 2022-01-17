@@ -125,7 +125,35 @@ Swagger Documention of the project can be found on root url or on `http://localh
 
 ### Architecture and Design
 
-Follows layered architecture approach and repository design pattern.  
+* Follows layered architecture approach
+* Uses Repository design pattern. 
+* Database design follows simple - [MongoDB embeded document design](https://docs.mongodb.com/manual/tutorial/model-embedded-one-to-many-relationships-between-documents/) 
+  ```
+    {
+      "id": "string"
+      "category": "string",
+      "title": "string",
+      "subtitle": "string",
+      "description": "string",
+      "type": int,
+      "tags": [
+        "string"
+      ],
+      "author": "string",
+      "replayBundleUrlJson": "string",
+      "isDownloadable": bool,
+      "isStreamable": bool,
+      "isPremium": bool,
+      "version": int,
+      "images": [
+        { 
+          "id": "string"
+          "url": "string",
+          "type": int
+        }
+      ]
+    }
+  ```
 
 </li>
 <li>
@@ -133,8 +161,8 @@ Follows layered architecture approach and repository design pattern.
 ### Request Flow
   >* *app.py is the entry point of the application*
   >* *Request will first go to app.py*
-  >* *From app.py, request will be forwarded to appropriate route handlers in routes directory*
-  >* *Route handlers will validate the structure of the request, and use the appropriate service from services directory*
+  >* *From app.py, request will be forwarded to appropriate route handlers from routes directory*
+  >* *Route handlers will validate the structure of the request using schema from schemas directory, and then from route handler appropriate service from services directory will be called*
   >* *Services will interact will the database and return the response to the route handlers*
 </li>
 </ul> 
