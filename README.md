@@ -195,7 +195,7 @@ Make sure you have Docker installed on your system.
    
 2. Build and run docker images using below command.
    ```sh
-   docker-compose build --up
+   docker-compose up --build
    ```
    * Run the above command inside of project directory where `Dockerfile` and `docker-compose` file is residing.
 
