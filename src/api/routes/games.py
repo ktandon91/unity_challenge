@@ -46,3 +46,4 @@ async def update_game(game_id: OID, game: GameIn, db: Repository = Depends(get_d
 @router.delete('/{game_id}', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_game(game_id: OID, db: Repository = Depends(get_database)):
     await games_service.delete_game(db=db, game_id=game_id)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
