@@ -52,20 +52,16 @@ For the below objective. </br>
 
 I have implemented a basic authentication mechanism, where authentication would mean that a user has a premium subscription and can view premium listings. </br>
 To segregate premium listings from normal ones I have added a new flag in json response `isPremium` which when set would mean that a listing is premium and only authenticated users can see these. </br> </br>
+
 <ul>
- 
+
  #### To Test Premium listings restriction follow the below steps.
-<li>
-    Create a user using ceate user API. </br>
-    <img src="images/create_user.png">
-    </br>
+<li>Create a user using ceate user API. </br><img src="images/create_user.png">
 </li>
 <li>
-    Add two listing one by `isPremium` flag and another with default `isPremium` value.
-    </br>
-    <img src="images/premium_listing.PNG">
-    </br>
-    <img src="images/non_premium_listing.PNG">
+  Add two listing one by `isPremium` flag and another with default `isPremium` value.
+  <img src="images/premium_listing.PNG">
+  <img src="images/non_premium_listing.PNG">
 </li>
 <li>
     Make the get request to listings api `/games` and see the response it will not show listing with `isPremium` true.
@@ -199,7 +195,34 @@ All the APIs can be tested from swagger on below url.
     ```
     Resonse JSON 
     ```
-
+      {
+        "listings": [
+          {
+            "category": "string",
+            "title": "string",
+            "subtitle": "string",
+            "description": "string",
+            "type": 0,
+            "tags": [
+              "string"
+            ],
+            "author": "string",
+            "replayBundleUrlJson": "string",
+            "isDownloadable": false,
+            "isStreamable": false,
+            "isPremium": false,
+            "version": 0,
+            "id": "string",
+            "images": [
+              {
+                "url": "string",
+                "type": 0,
+                "id": "string"
+              }
+            ]
+          }
+        ]
+      }
     ```
 2. To add a game listing, make a post request on
     ```
@@ -207,11 +230,33 @@ All the APIs can be tested from swagger on below url.
     ```
     Request JSON 
     ```
+      {
+        "category": "sample category",
+        "title": "sample title",
+        "subtitle": "sample subtitle",
+        "description": "sample desc",
+        "type": 0,
+        "tags": [
+          "tag 1"
+        ],
+        "author": "Dummy",
+        "replayBundleUrlJson": "example.com/dummy.json",
+        "isDownloadable": false,
+        "isStreamable": false,
+        "isPremium": false,
+        "version": 0,
+        "images": [
+          {
+            "url": "example.com/abc.jpeg",
+            "type": 0
+          }
+        ]
+      }
 
     ```
-    Resonse JSON 
+    Resonse
     ```
-
+      Status Code: 201 Created
     ```
 3. To view a single game listing, make a get request using game_id on.
     ```
@@ -219,7 +264,30 @@ All the APIs can be tested from swagger on below url.
     ```
     Resonse JSON 
     ```
-
+      {
+        "category": "sample category",
+        "title": "sample title",
+        "subtitle": "sample subtitle",
+        "description": "sample desc",
+        "type": 0,
+        "tags": [
+          "tag 1"
+        ],
+        "author": "Dummy",
+        "replayBundleUrlJson": "example.com/dummy.json",
+        "isDownloadable": false,
+        "isStreamable": false,
+        "isPremium": false,
+        "version": 0,
+        "id": "61e40b59bd01170bc41c32eb",
+        "images": [
+          {
+            "url": "example.com/abc.jpeg",
+            "type": 0,
+            "id": "61e40b59bd01170bc41c32ea"
+          }
+        ]
+      }
     ```    
 4. To update a game listing, make a put request using game_id on.
     ```
@@ -227,11 +295,34 @@ All the APIs can be tested from swagger on below url.
     ```
     Request JSON 
     ```
-
+    {
+      "category": "sample category",
+      "title": "sample title",
+      "subtitle": "sample subtitle",
+      "description": "sample desc",
+      "type": 0,
+      "tags": [
+        "tag 1"
+      ],
+      "author": "Dummy",
+      "replayBundleUrlJson": "example.com/dummy.json",
+      "isDownloadable": false,
+      "isStreamable": false,
+      "isPremium": false,
+      "version": 0,
+      "id": "61e40b59bd01170bc41c32eb",
+      "images": [
+        {
+          "url": "example.com/abc.jpeg",
+          "type": 0,
+          "id": "61e40b59bd01170bc41c32ea"
+        }
+      ]
+    }
     ```
-    Resonse JSON 
+    Resonse
     ```
-
+      Status Code: 200 OK
     ```    
 5. To delete a game listing, make a delete using game_id request on.
     ```
@@ -239,5 +330,35 @@ All the APIs can be tested from swagger on below url.
     ```
     Resonse 
     ```
-
+      Status Code: 204 No Content
+    ```
+6. To create a user, make a post request on.
+    ```
+    http://localhost:8000/api/users/
+    ```
+    Request JSON
+    ```
+      {
+        "email": "user@example.com",
+        "password": "string"
+      }
+    ```
+7. To obtain a token to access token for premium listings, make a post requst on.
+    ```
+    http://localhost:8000/login
+    ```
+    Request 
+    ```
+        curl -X 'POST' \
+          'http://localhost:8000/login' \
+          -H 'accept: application/json' \
+          -H 'Content-Type: application/x-www-form-urlencoded' \
+          -d 'grant_type=&username=user%40example.com&password=string&scope=&client_id=&client_secret='
+    ```
+    Response 
+    ```
+      {
+        "access_token":   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.    eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHAiOjE2NDIzODE3Njd9.eOVNKAyuQ7nTpe5hROX_Uag9P9MF32xAiCPZr9_kfCA",
+        "token_type": "bearer"
+      }
     ```
