@@ -35,7 +35,7 @@ Sample API for unity interview process.
 
 Tried implementing a self documenting code approach where all variables and function names are denoting what they are actually doing. 
 
-API documentation can be accessed on `/docs` endpoint, when the project is up and running. 
+API documentation can be accessed on `/docs` endpoint when the project is up and running. 
 
 For instructions on how to run the project navigate to <a href="#getting-started">Getting Started</a>
 
@@ -55,7 +55,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
 
 <ul>
 
- #### To Test Premium listings restriction follow the below steps.
+ #### To Test Premium listings restriction feature follow the below steps.
 <li>Create a user using ceate user API. </br><img src="images/create_user.png">
 </li>
 <li>
@@ -163,7 +163,7 @@ Swagger Documention of the project can be found on root url or on `http://localh
   >* *Request will first go to app.py*
   >* *From app.py, request will be forwarded to appropriate route handlers from routes directory*
   >* *Route handlers will validate the structure of the request using schema from schemas directory, and then from route handler appropriate service from services directory will be called*
-  >* *Services will interact will the database and return the response to the route handlers*
+  >* *Services will interact with the database and return the data to route handlers*
 </li>
 </ul> 
 
@@ -217,6 +217,8 @@ All the APIs can be tested from swagger on below url.
    ```
    http://localhost:8000/docs
    ```
+Below are the request/response structure to test APIs from postman/CURL.
+
 1. To get all the listings, make a get request on
     ```
     http://localhost:8000/api/games
@@ -352,7 +354,7 @@ All the APIs can be tested from swagger on below url.
     ```
       Status Code: 200 OK
     ```    
-5. To delete a game listing, make a delete using game_id request on.
+5. To delete a game listing, make a delete request using game_id request on.
     ```
     http://localhost:8000/api/games/{game_id}
     ```
