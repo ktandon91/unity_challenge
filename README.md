@@ -59,7 +59,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
 <li>Create a user using ceate user API. </br><img src="images/create_user.png">
 </li>
 <li>
-  Add two listing one by `isPremium` flag and another with default `isPremium` value.
+  Add two listing one with `isPremium` flag set to true and another with default `isPremium` value which is false.
   <img src="images/premium_listing.PNG">
   <img src="images/non_premium_listing.PNG">
 </li>
