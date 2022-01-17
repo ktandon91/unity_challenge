@@ -36,7 +36,10 @@ async def game_details(game_id: OID, db: Repository = Depends(get_database)):
 
 @router.put('/{game_id}')
 async def update_game(game_id: OID, game: GameIn, db: Repository = Depends(get_database)):
-    await games_service.update_game(db=db, game_id=game_id, game=game)
+    result = await games_service.update_game(db=db, game_id=game_id, game=game)
+    if result is None:
+        return HTTPException(detail="Not able to update the document!", 
+                        status_code=status.HTTP_400_BAD_REQUEST)
     return Response("Successfully Updated!")
 
 

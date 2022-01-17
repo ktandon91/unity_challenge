@@ -1,6 +1,7 @@
 from typing import List
 
 from bson import ObjectId
+from pymongo import ReturnDocument
 
 from api.repository import Repository
 from api.schemas.base import OID 
@@ -38,9 +39,11 @@ async def update_game(db:Repository, game_id: OID, game: GameIn) -> None:
     for img in game.images:
         images.append(ImageOut(**img.dict(), id=ObjectId()))
     game.images = images
-    await db.games.update_one({'_id': ObjectId(game_id)},
-                                       {'$set': game.dict(exclude={'id'})})
-
+    result = await db.games.find_one_and_update({'_id': ObjectId(game_id)},
+                                       {'$set': game.dict(exclude={'id'})},
+                                       return_document= True, 
+                                       upsert=True)
+    return result
 
 async def delete_game(db:Repository, game_id: OID) -> None:
     await db.games.delete_one({'_id': ObjectId(game_id)})
