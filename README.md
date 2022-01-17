@@ -64,7 +64,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
   <img src="images/non_premium_listing.PNG">
 </li>
 <li>
-    Make the get request to listings api `/games` and see the response it will not show listing with `isPremium` true.
+    Make the get request to listings api `api/games` and see the response it will not show listing with `isPremium` true.
     </br>
     <img src="images/non_subscribers_listings.PNG">
     </br>
@@ -75,7 +75,7 @@ To segregate premium listings from normal ones I have added a new flag in json r
     </br>
 </li>
 <li>
-    Again make the get request to listings api `/games` and see the response. Now we will be able to see 2 listings. One with `isPremium` set to true and another with `isPremium` set to false.
+    Again make the get request to listings api `/api/games` and see the response. Now we will be able to see 2 listings. One with `isPremium` set to true and another with `isPremium` set to false.
     </br>
     <img src="images/subscribers_listing.PNG">
 </li>
